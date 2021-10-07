@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "build": "webpack",
-    "dev": "webpack-dev-server --open",
+    "dev": "webpack serve --open",
     "gulp-prod": "node_modules/.bin/gulp prod",
     "gulp-dev": "node_modules/.bin/gulp dev"
   },
@@ -25,13 +25,13 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.3.1",
-    "webpack": "^4.45.0"
+    "webpack": "^5.57.1"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
     "cross-env": "^5.2.0",
     "isomorphic-fetch": "^2.2.1",
     "nodemon": "^1.18.9",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^4.8.0"
   }
 }
