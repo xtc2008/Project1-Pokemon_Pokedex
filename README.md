@@ -12,6 +12,7 @@ You will build tools using the [Webpack](https://webpack.js.org/) module bundler
 - [ ] Learn how to use Gulp with Browserify to start a project in React as an alternative tool
 
 ## Getting Started
+
 - Install dependencies: `npm install`. We will install more dependencies for Webpack and Babel along the way.
 
 - Once you've setup your Webpack config file (`webpack.config.js`) in the challenges below, you can create your Webpack production build by running: `npm run build`. You can then run the application server with `npm start` and view the React application on `localhost:3000`
@@ -29,7 +30,7 @@ After running `npm start` the server starts on port 3000, but the React app does
 
 Webpack can gracefully combine and optimize projects with both type of JS modules and serve it in a single `bundle.js` file. This is how we avoid the script tag "hell" mentioned in the lecture. Webpack also has the ability to include within the `bundle.js` file other assets like CSS styles and images, allowing for a modular code experience.
 
-Webpack also achieves the goal of _transpilation_, which is the processing of custom file types that go beyond traditional JS or CSS. This is done using _loaders_. In particular, the loaders that particularly deal with transpiling JS code are known as Babel loaders. We will create a `webpack.config.js` file that will 
+Webpack also achieves the goal of _transpilation_, which is the processing of custom file types that go beyond traditional JS or CSS. This is done using _loaders_. In particular, the loaders that particularly deal with transpiling JS code are known as Babel loaders. We will create a `webpack.config.js` file that will
 
 - bundle your JS and CSS files together into a `bundle.js` file.
 - transpile React [JSX](https://reactjs.org/docs/introducing-jsx.html) syntax (the ability to write HTML-looking code within React code) into JS code [understandable](https://reactjs.org/docs/react-without-jsx.html) by the browser.
@@ -87,6 +88,7 @@ We thus now have the ability to make a call to our express API server in develop
 One final piece of best practice is recommended. In the code for `server.js`, the lines of code that serve the `build` folder and the `index.html` file are not needed in development mode, since the `localhost:3000` express server doesn't need to serve them (instead, the webpack-dev-server serves them). Wrap these lines of code in an `if` statement that checks whether the `NODE_ENV` variable is in production, so that they are only served in production mode because they are only needed then. Make sure that your project still works in both production and development mode, and that the `localhost:3000` server in development mode doesn't serve `index.html` on `/` and `/build/bundle.js` (try testing with Postman).
 
 Other extensions:
+
 - [ ] Implement the [Mini-CSS-Extract-Plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) in production so that styles are not inlined in bundle.js, but rather placed in a separate styles.css file that can be loaded in parallel to the JS bundle. This improves the performance of the initial page load in production if we have a large amount of CSS. A great deal of effort in frontend web performance is dedicated towards making the initial page load fast, so that users are less likely to initially leave the web page.
 - [ ] Implement Hot Module Replacement. [HMR](https://webpack.js.org/concepts/hot-module-replacement/) is the ability to make changes in to modules in webpack-dev-server without needing a full refresh of the browser. This improves our experience in development.
 - [ ] Use Webpack to minify images: jpg are usually compressed before being deployed. Download some high-res images [like this bird](https://commons.wikimedia.org/wiki/Category:Colorful_birds#/media/File:Schwarzk%C3%B6pfchen.JPG) and add to the `index.html`. Use a tool to minify/compress the jpg so that load time is quicker on the `index.html`.
@@ -116,4 +118,3 @@ Notice that our code is not minified/uglified. Check this by looking at `browser
 
 Extension:
 Set up a development environment for Gulp with Browserify that can be ran with `npm run gulp-dev`. Utilize `watchify` on the `browserify` instance. You'll have to set up a Gulp task called `dev` (which matches the task name that Gulp calls in our script for `npm run gulp-dev`). Define an event handler on the watchified browserify instance so that on `update` that the bundler re-runs the Babel/Sass transpilations and pipes the results to the destination folder with the correct destination file name. Make sure that in this task that we don't perform uglification. Note that this development environment is not taking advantage of live-reloading (because we are not utilizing a dev server with a websocket under the hood) so we have to refresh the page to see changes.
-
