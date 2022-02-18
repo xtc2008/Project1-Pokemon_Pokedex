@@ -1,2 +1,346 @@
-@import '_variables';
-@import '_game';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=Roboto:wght@400;900&display=swap');
+body {
+  background: #EC9F5D;
+}
+
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+ }
+
+.app-head{
+  width: auto;
+  height: 260px;
+  text-align: left;
+  margin-left: 70px;
+  margin-top: 50px;
+}
+
+.pokemon-header{
+  width: 300px;
+  height: 150px;
+  margin-left: 600px;
+}
+
+.searchBar{
+  margin-top: -25px;
+  display: flex;
+  align-items: center;
+}
+
+button{
+  margin-top: 50px;
+  margin-left: -60px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+#search {
+    margin-top: 50px;
+    margin-left: 235px;
+    width: 1100px;
+    height: 60px;
+    border-radius: 20px;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.8rem;
+}
+
+.app-body{
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.pokemon-detail-wrapper {
+  position: fixed;
+  font-family: "Roboto", sans-serif;
+  width: 475px;
+  height: 780px;
+  margin-right: 180px;
+  background-color: #F2F2F2;
+  border-radius: 50px;
+  box-shadow: 7px 7px 7px 10px rgba(0, 0, 0, 0.1);
+  bottom: 100px;
+  right: 75px;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 1240px;
+  height: 780px;
+  margin-left: 250px;
+  // border: 5px solid $lightOrange;
+  // background-color: $darkBlue;
+  padding: 0;
+}
+
+.pokemon-box-wrapper {
+  display: flexbox;
+  position: relative;
+  box-sizing: border-box;
+  width: 310px;
+  height: 250px;
+  margin-top: 70px;
+  margin-left: 30px;
+  margin-right: 30px;
+  border-radius: 50px;
+  background-color: #F2F2F2;
+  box-shadow: 7px 7px 7px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  
+  &:hover {
+    background-color: darken(white, 15);
+  }
+
+}
+
+.pokemon-box-animate {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  transform: translateY(-40%);
+}
+
+.pokemon-box-top {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -45px;
+}
+
+.pokemon-box-top-left {
+  transform: translateY(-40%);
+  font-family: "Roboto", sans-serif;
+  font-size: 40pt;
+  color:rgba(0, 0, 0, 0.1);
+}
+
+.pokemon-box-top-right {
+  position: absolute;
+  text-align: right;
+  font-size: 30pt;
+  font-family: 'Noto Sans JP', sans-serif;
+  right:20px;
+  letter-spacing: -3px;
+  color:rgba(0, 0, 0, 0.05);
+  right: 30px;
+}
+
+.pokemon-box-mid{
+  display: flex;
+  justify-content: space-between;
+  font-family: "Roboto", sans-serif;
+  font-size: 35pt;
+  font-weight: 900;
+  margin-left: 10px;
+  margin-right: 17px;
+  margin-top: -20px;
+}
+
+.pokemon-box-name{
+  font-size: 20pt;
+  font-weight: 900;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.pokemon-box-type{
+  
+  margin-left: 10px;
+}
+
+
+.pokemon-box-bot{
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  margin: 20px 0px;
+  font-family: "Roboto", sans-serif;
+  font-size: 8pt;
+  color: rgba(0, 0, 0, 0.5);
+
+  .pokemon-box-WeightInput{
+    display: block;
+    width: 80px;
+    margin: auto;
+    font-size: 12pt;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .pokemon-box-TypeInput{
+    display: block;
+    width: 140px;
+    margin: auto;
+    font-size: 12pt;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+    border-left:3px solid rgba(0, 0, 0, 0.2);
+    border-right:3px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .pokemon-box-HeightInput{
+    display: block;
+    width: 80px;
+    margin: auto;
+    font-size: 12pt;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+}
+
+.pokemon-detail-top {
+  justify-content: center;
+  text-align: center;
+}
+
+.pokemon-detail-number {
+  margin-top: -250px;
+  font-size: 30px;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.pokemon-detail-name {
+  margin-top: -30px;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.pokemon-detail-image{
+  width: 473px;
+  transform: translateY(-50%);
+}
+
+.pokemon-detail-type {
+  margin-top: -20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.pokemon-detail-entry {
+  justify-content: center;
+  text-align: center;
+  margin: 0px 20px
+}
+
+.pokemon-detail-entry-dex {
+  font-size: 19px;
+  font-weight: 900;
+}
+
+
+.pokemon-detail-data-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pokemon-detail-data-left {
+  width: 275px;
+  text-align: left;
+  display: flex;
+  font-size: 15px;
+  border-right:3px solid rgba(0, 0, 0, 0.2);
+  margin-left: 20px;
+
+  li{
+    margin-top: 12px;
+    margin-bottom: 5px;
+  }
+}
+
+.pokemon-detail-data-left1-desc{
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 600;
+  width: auto;
+}
+.pokemon-detail-data-left2-inputs{
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+.pokemon-detail-data-text{
+  text-align: center;
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.pokemon-detail-stats-template{
+  width: 90%;
+  margin-top: -15px;
+}
+
+.pokemon-detail-weakness-template{
+  margin-top: -10px;
+}
+
+.pokemon-detail-data-right {
+  width: 200px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.4);
+
+  max-width: 200px;
+}
+
+.pokemon-detail-stats-numbers {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 8px; 
+  margin-top: -22px;
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.6);
+  margin-left: 8px;
+  margin-right: 8px;
+  li {
+    margin: auto;
+    font-size: 14px;
+  }
+}
+
+.pokemon-detail-genderRatio{
+  display: flex;
+  justify-content: space-between;
+  margin-top: -15px;
+  margin-right: 10px;
+}
+
+.pokemon-detail-genderMale-text{
+  margin-right: 10px;
+}
+
+.pokemon-detail-gendermale-image{
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.pokemon-detail-genderFemale-text{
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.pokemon-detail-genderFemale-image{
+  width: 20px;
+  height: 30px;
+}
+
+
+
+
+
+
+
+//card dims height 320px  width 310px 70px top-margin
+// 3 x 2 Board dims height 640px width 1020px
+//full card dims height 1000px width 756px
+

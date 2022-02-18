@@ -1,11 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 
 module.exports = {
     entry: './client/index.js',
     output: {
         path: path.resolve(__dirname, 'build'),
+        publicPath: '/',
         filename: 'bundle.js',
       },
     mode: process.env.NODE_ENV,
@@ -35,6 +37,17 @@ module.exports = {
                 test: /\.css$/i,
                 use: [MiniCssExtractPlugin.loader, "css-loader"],
             },
+            {
+                test: /\.png$/,
+                use: [
+                  {
+                    loader: 'url-loader',
+                    options: {
+                      mimetype: 'image/png'
+                    }
+                  }
+                ]
+              }
         ],
     },
     resolve: {
@@ -46,6 +59,7 @@ module.exports = {
           template: './index.html',
         }),
         new MiniCssExtractPlugin(),
+        new NodePolyfillPlugin(),
     ],
     devServer: {
         static: {
@@ -54,7 +68,11 @@ module.exports = {
             // hot: true,
         },
         proxy: {
-            '/api': 'http://localhost:3000'
+            '/getpokemon': {
+                              target: 'http://localhost:3000',
+                              secure: false
+                            }
+            
         }
     }
 };

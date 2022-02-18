@@ -1,102 +1,79 @@
-import React, { Component } from 'react';
-import Row from './Row';
-import GameList from './GameList';
-import Leaders from './Leaders';
+import React, { Component , useEffect } from 'react';
+import PokemonBox from './PokemonBox';
+import PokemonDetails from './PokemonDetails';
+import Header from './Header';
+import { useState} from 'react'
 
-let gameStore = [];
+const App = () => {
+  const [fetchedPokemon, setFetchedPokemon] = useState(false);
+  const [pokemonList, setPokemonList] = useState([]);
+  const [currentPokemon, setCurrentPokemon] = useState({
+      id:"151",
+      name:"Mew",
+      height:"0.40m",
+      weight:"4.00kg",
+      abilities:[
+      "pressure",
+      "unnerve"
+      ],
+      types:[
+      "dragon",
+      "flying"
+      ],
+      static_sprite:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/151.png",
+      animated_sprite:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/151.gif",
+      hp:100,
+      attack:100,
+      defense:100,
+      special_attack:100,
+      special_defense:100,
+      speed:100,
+      caught:"no",
+      entry:"A MEW is said to possess the genes of all\nPOKéMON. It is capable of making itself\ninvisible at will, so it entirely avoids\nnotice even if it approaches people.",
+      habitat:"rare",
+      genderM:"112.50%",
+      genderF:"-12.50%",
+      genera:"しんしゅポケモン",
+      evolveFrom:null
+  });
 
-function getInitialState() {
-  return {
-    rows: [
-      ['', '', ''],
-      ['', '', ''],
-      ['', '', ''],
-    ],
-    turn: 'X',
-    winner: undefined,
-    gameList: gameStore,
-  };
-}
-
-function checkWin(rows) {
-  const combos = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-  ];
-
-  const flattened = rows.reduce((acc, row) => acc.concat(row), []);
-
-  return combos.find(combo => (
-    flattened[combo[0]] !== '' &&
-    flattened[combo[0]] === flattened[combo[1]] &&
-    flattened[combo[1]] === flattened[combo[2]]
-  ));
-}
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.state = getInitialState();
-  }
-  
-  handleClick(row, square) {
-    let { turn, winner } = this.state;
-    const { rows } = this.state;
-    const squareInQuestion = rows[row][square];
-
-    if (this.state.winner) return;
-    if (squareInQuestion) return;
-
-    rows[row][square] = turn;
-    turn = turn === 'X' ? 'O' : 'X';
-    winner = checkWin(rows);
-
-    this.setState({
-      rows,
-      turn,
-      winner,
+  useEffect(function effectFunction() {
+    fetch('/getpokemon')
+    .then(response => response.json())
+    .then(pokemonData => {
+      setPokemonList(pokemonData);
+      setFetchedPokemon(true);
     });
+  }, []);
+
+
+
+  const handleClick = (pokemon) => {
+    console.log(pokemon)
+    setCurrentPokemon(pokemon);
   }
 
-  render() {
-    const { rows, turn, winner, gameList } = this.state;
-    const handleClick = this.handleClick;
+  const rowElements = pokemonList.map((pokemon,i) => (
+    <PokemonBox 
+      key={i+1} 
+      pokemon={pokemon} 
+      handleClick={handleClick}
+    />
+  ));
 
-    const rowElements = rows.map((letters, i) => (
-      <Row key={i} row={i} letters={letters} handleClick={handleClick} />
-    ));
-
-    let infoDiv;
-    if (winner) {
-      let winTurn = turn === 'X' ? 'O' : 'X';
-      infoDiv = (
-        <div>
-          <div>Player {winTurn} wins with squares {winner.join(', ')}!</div>
-        </div>
-      );
-    } else {
-      infoDiv = <div>Turn: {turn}</div>;
-    }
-
-    return (
-      <div>
-        {infoDiv}
+  return (
+    <div className='app'>
+      <Header/>
+      <div className="app-body">
         <div id="board">
           {rowElements}
         </div>
-        <button id="reset" onClick={() => this.setState(getInitialState())}>Reset board</button>
-        <GameList gameList={gameList} />
-        <Leaders />
+        <PokemonDetails
+          currentPokemon={currentPokemon}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;

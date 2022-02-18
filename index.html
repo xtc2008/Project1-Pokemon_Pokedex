@@ -1,14 +1,35 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Build Tools Challenge</title>
+  <title>Pokémon Pokédex</title>
+  <link rel="icon" href="%PUBLIC_URL%/Pokedex.ico" />
 </head>
 <body>
-  <h1>Build Tools Challenge</h1>
   <div id="root"></div>
   <!-- script for webpack and webpack-dev-server challenge -->
-  <script src="build/bundle.js"></script>
+  <script src="https://unpkg.com/fast-average-color/dist/index.min.js"></script>
+  <script>
+      document.addEventListener('unload', function() {
+          const fac = new FastAverageColor();
+          const container = document.querySelector('body');
+          const color = fac.getColor(document.getElementById('main_img'));
 
+          container.style.backgroundColor = color.rgba;
+          container.style.color = color.isDark ? '#fff' : '#000';
+
+          console.log(color);
+          // {
+          //     error: null,
+          //     rgb: 'rgb(255, 0, 0)',
+          //     rgba: 'rgba(255, 0, 0, 1)',
+          //     hex: '#ff0000',
+          //     hexa: '#ff0000ff',
+          //     value: [255, 0, 0, 255],
+          //     isDark: true,
+          //     isLight: false
+          // }
+      }, false);
+  </script>
   <!-- uncomment below and comment out the tag above for gulp/browserify challenge -->
   <!-- <script src="build/browserify-bundle.js"></script> -->\
 </body>
