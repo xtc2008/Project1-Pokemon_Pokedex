@@ -1,6 +1,6 @@
 # pokemon-pokedex
 
-Interactive Pokemon Pokedex which provided detailed information for each of the original 151 pokemon.  Setup is created to pull all available pokemon from the pokemonAPI.
+Interactive Pokemon Pokedex which provided detailed information for each of the original 151 pokemon.  Setup is created to pull all available pokemon from the PokemonAPI.
 
 ## Building and running on localhost
 
