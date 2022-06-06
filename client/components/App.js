@@ -1,8 +1,7 @@
-import React, { Component , useEffect } from 'react';
+import React, { useState , useEffect } from 'react';
 import PokemonBox from './PokemonBox';
 import PokemonDetails from './PokemonDetails';
 import Header from './Header';
-import { useState} from 'react'
 
 const App = () => {
   const [fetchedPokemon, setFetchedPokemon] = useState(false);
@@ -45,8 +44,6 @@ const App = () => {
       setFetchedPokemon(true);
     });
   }, []);
-
-
 
   const handleClick = (pokemon) => {
     console.log(pokemon)

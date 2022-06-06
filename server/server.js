@@ -5,10 +5,13 @@ const path = require('path');
 
 
 app.use(express.json());
+
+app.use('/static', express.static(path.join(__dirname, '../public/assets/')))
+
 const pokemonController = require('./controllers/pokemonController.js');
 const fileController = require('./controllers/fileController.js');
 
-app.get('/kanto', pokemonController.getPokemon, (req, res) => {
+app.get('/get-pokemon-data', pokemonController.getPokemonData, (req, res) => {
   return res.status(200).send(JSON.stringify(res.locals.pokemon));
 });
 

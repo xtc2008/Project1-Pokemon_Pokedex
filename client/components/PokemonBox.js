@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import captured from '../assets/captured.png';
-import uncaught from '../assets/uncaught.png';
-import normal from '../assets/normal.png';
-import fighting from '../assets/fighting.png';
-import flying from '../assets/flying.png';
-import poison from '../assets/poison.png';
-import ground from '../assets/ground.png';
-import rock from '../assets/rock.png';
-import bug from '../assets/bug.png';
-import ghost from '../assets/ghost.png';
-import steel from '../assets/steel.png';
-import fire from '../assets/fire.png';
-import water from '../assets/water.png';
-import grass from '../assets/grass.png';
-import electric from '../assets/electric.png';
-import psychic from '../assets/psychic.png';
-import ice from '../assets/ice.png';
-import dragon from '../assets/dragon.png';
-import dark from '../assets/dark.png';
-import fairy from '../assets/fairy.png';
+import captured from '../../public/assets/captured.png';
+import uncaught from '../../public/assets/uncaught.png';
+import normal from '../../public/assets/normal.png';
+import fighting from '../../public/assets/fighting.png';
+import flying from '../../public/assets/flying.png';
+import poison from '../../public/assets/poison.png';
+import ground from '../../public/assets/ground.png';
+import rock from '../../public/assets/rock.png';
+import bug from '../../public/assets/bug.png';
+import ghost from '../../public/assets/ghost.png';
+import steel from '../../public/assets/steel.png';
+import fire from '../../public/assets/fire.png';
+import water from '../../public/assets/water.png';
+import grass from '../../public/assets/grass.png';
+import electric from '../../public/assets/electric.png';
+import psychic from '../../public/assets/psychic.png';
+import ice from '../../public/assets/ice.png';
+import dragon from '../../public/assets/dragon.png';
+import dark from '../../public/assets/dark.png';
+import fairy from '../../public/assets/fairy.png';
 
 const PokemonBox = ({pokemon, handleClick}) => {
 
@@ -162,7 +162,7 @@ switch (expr3) {
   return (
     <div onClick={() => handleClick(pokemon)} className="pokemon-box-wrapper">
       <div className="pokemon-box-animate">
-        <img className="pokemon-box-image" src={animated_sprite}></img>
+      <img className="pokemon-box-image" src={`http://localhost:3000/static/animated/${id * 1}.gif`}></img>
       </div>
       <div className="pokemon-box-top">
         <section className="pokemon-box-top-left">

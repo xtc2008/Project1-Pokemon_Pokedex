@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
-import logo from '../assets/Logo2.png';
-import pokeball from '../assets/Pokeball.png';
+import logo from '../../public/assets/Logo2.png';
+import pokeball from '../../public/assets/Pokeball.png';
 
 class Header extends Component {
   constructor(props) {
